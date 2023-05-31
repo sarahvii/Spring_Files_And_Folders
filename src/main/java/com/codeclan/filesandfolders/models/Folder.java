@@ -1,5 +1,7 @@
 package com.codeclan.filesandfolders.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +19,10 @@ public class Folder {
 
     @ManyToOne
     @JoinColumn(name="person_id", nullable = false)
+    @JsonIgnoreProperties({"folders"})
     private Person person;
 
+    @JsonIgnoreProperties({"folders"})
     @OneToMany(mappedBy = "folder")
     private List<File> files;
 
